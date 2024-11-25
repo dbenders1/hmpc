@@ -37,7 +37,7 @@ Interested in trying out our method? Follow the instructions below to get starte
 
 ## How to get started?
 Clone this repository by running:
-```
+```bash
 git clone --recurse-submodules git@github.com:dbenders1/hmpc.git
 ```
 and follow the instructions in the [src README](./src/README.md).
