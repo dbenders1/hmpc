@@ -16,15 +16,15 @@ Contents:\
 
 3. Note that some links in this and other READMEs do not work on [github.com](https://github.com). To view the links, clone the repository including all its submodules and open the READMEs in your favourite editor.
 
-4. Interested in using this setup for your own system? This is certainly possible! Our [MPC package](./catkin_ws/src/mpc) can easily be extended to other robotic platforms and tasks by defining different models, objectives, constraints, etc. Furthermore, it supports data logging, visualization, and real-time performance evaluation.
+4. Interested in using this setup for your own system? This is certainly possible! Our [MPC](./catkin_ws/src/mpc) package can easily be extended to other robotic platforms and tasks by defining different models, objectives, constraints, etc. Furthermore, it supports data logging, visualization, and real-time performance evaluation.
 
-5. Are you using a PX4-powered quadrotor platform? Check out [our fork of PX4-Autopilot](./PX4-Autopilot)! We can communicate the hover thrust estimate via [our fork of mavros](./catkin_ws/src/mavros) to any ROS node. This is useful if you want to control the quadrotor with body rate or attitude commands.
+5. Are you using a PX4-powered quadrotor platform? Check out our [drone_toolbox](/src/catkin_ws/src/drone_toolbox) package and [our fork of PX4-Autopilot](./PX4-Autopilot)! We can communicate the hover thrust estimate via [our fork of mavros](./catkin_ws/src/mavros) to any ROS node. This is useful if you want to control the quadrotor with body rate or attitude commands.
 
 
 
 ## Install
 ### GitHub
-We recommend setting your connection with GitHub up using SSH. See [this page](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) for more information.
+We recommend setting up your connection with GitHub using SSH. See [this page](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) for more information.
 
 
 
@@ -33,17 +33,18 @@ Install [Docker](https://docs.docker.com/) by following the instructions on [thi
 
 
 
+### Python 3
+The solver generation code in the [MPC](./catkin_ws/src/mpc) repository requires Python 3. See the [MPC README](./catkin_ws/src/mpc/README.md) for more information.
+
+
+
 ### ForcesPro license
-The MPC implementations use a ForcesPro solver. Therefore, first request a ForcesPro license and install the client. To this end, follow the corresponding instructions in the [MPC README](./catkin_ws/src/mpc/README.md). Note that you need to have a ForcesPro floating license, since our setup runs in a Docker container.
+The MPC implementations use a ForcesPro solver. Therefore, first request a ForcesPro license and install the client. To this end, follow the corresponding instructions in the [MPC README](./catkin_ws/src/mpc/README.md).
 
 
-### MATLAB and dependencies
-For the [offline terminal ingredients design](./catkin_ws/src/mpc/mpc_solver/scripts/include/offline_computations/mpc-sdp) we use [MATLAB R2023a](https://nl.mathworks.com/products/new_products/release2023a.html) with the following packages:
-- [CasADi](https://web.casadi.org/get)
-- [YALMIP](https://yalmip.github.io) via [tbxmanager](https://tbxmanager.com)
-- [SDPT3](https://blog.nus.edu.sg/mattohkc/softwares/sdpt3)
 
-> :information_source: The terminal ingredients are already computed and included in this repository. These packages are only required if you want to change the offline design.
+### MATLAB and packages
+Please refer to the [MPC-SDP README](./catkin_ws/src/mpc/mpc_solver/scripts/include/offline_computations/mpc-sdp/README.md) for the MATLAB version and packages that were used to run the offline terminal ingredients design.
 
 
 
@@ -51,24 +52,24 @@ For the [offline terminal ingredients design](./catkin_ws/src/mpc/mpc_solver/scr
 The build instruction differ between simulations and lab experiments. First execute the following common instructions:
 
 1. Go to the `src` directory of this repo (important to prevent deleting the *.git* directory in your local repo clone):
-    ```
+    ```bash
     cd src
     ```
 
 2. Build the Docker image by filling in the required arguments:
-    ```
+    ```bash
     sudo ./docker_build.sh
     ```
     Give the Docker image a descriptive name, such as *hmpc-sim* or *hmpc-lab*.
 
 3. Create and run container from the built image by filling in the required arguments:
-    ```
+    ```bash
     ./docker_run.sh
     ```
     Give the Docker container a descriptive name, such as *dennis-paper-hmpc*. From now on, we refer to the container with this name.
 
 4. Exit the container and source the following aliases in the *~/.bashrc* file on your host machine:
-    ```
+    ```bash
     alias cdmpcsolver='cd <path_to_repo>/src/catkin_ws/src/mpc/mpc_solver'
     alias mpc_generate_solver_hmpc='cdmpcsolver; ./setup_script.sh -c tmpc_settings.py -c pmpc_settings.py -s hovergames -f ARM'
     alias mpc_generate_solver_smpc='cdmpcsolver; ./setup_script.sh -c smpc_settings.py -s hovergames -f ARM'
@@ -76,11 +77,11 @@ The build instruction differ between simulations and lab experiments. First exec
     where `<path_to_repo>` is the path to this repository on your host machine.
 
 5. After sourcing the aliases, generate the HMPC solver:
-    ```
+    ```bash
     mpc_generate_solver_hmpc
     ```
     or the SMPC solver:
-    ```
+    ```bash
     mpc_generate_solver_smpc
     ```
     In the [mpc_solver](./catkin_ws/src/mpc/mpc_solver) package, this will generate a directory *hovergames* in the [include](./catkin_ws/src/mpc/mpc_solver/include/mpc_solver/) and [src](./catkin_ws/src/mpc/mpc_solver/src) directories and a file *cmake_globalvars.cmake* in the [src](./catkin_ws/src/mpc/mpc_solver/src) directory.

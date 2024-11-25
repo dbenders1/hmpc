@@ -27,7 +27,7 @@ In this work, we compare the performance of a single-layer MPC (SMPC) with a hie
 
 ![](./media/hmpc.gif)
 
-The quadrotor platform used for the lab experiments is the following:
+The quadrotor platform used for the lab experiments is based on the [NXP HoverGames development kit](https://nxp.gitbook.io/hovergames):
 
 ![](./media/platform.svg)
 

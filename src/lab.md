@@ -27,7 +27,7 @@ In the lab experiments setup, all the repository content is copied into the Dock
     See [this page](https://code.visualstudio.com/docs/containers/overview) for more information on how to use Docker inside VS Code.
 
     > :bulb: It could be useful to add the following lines to the *~/.bashrc* file in the Docker container on the onboard computer:
-    > ```
+    > ```bash
     > export GIT_AUTHOR_NAME=<your_github_username>
     > export GIT_AUTHOR_EMAIL=<your_github_email>
     > ```
@@ -65,7 +65,7 @@ List of components:
 
 4. During the Docker build time on the onboard computer, clone this repository on the GCS and follow all [build instructions](./sim.md#build) in [sim.md](./sim.md) with the following changes:
     - Add the following lines to the *~/.bashrc* file in the container on the GCS:
-        ```
+        ```bash
         export ROS_MASTER_URI=http://<ip_address_onboard_computer>:11311
         export ROS_IP=<ip_address_gcs>
         ```
@@ -73,7 +73,7 @@ List of components:
 
 5. In the SSH terminal to the onboard computer, follow the instructions up to and including step 3 in the [build instructions](./sim.md#build) in [sim.md](./sim.md) to start the container with the following changes:
     - Add the following lines in the *~/.bashrc* file in the Docker container on the onboard computer:
-        ```
+        ```bash
         export ROS_MASTER_URI=http://<ip_address_onboard_computer>:11311
         export ROS_IP=<ip_address_onboard_computer>
         ```
@@ -82,7 +82,7 @@ List of components:
 6. After having generated the solver as explained in the [src README](./README.md#build) instructions, copy the *hovergames* directory in the [include](./catkin_ws/src/mpc/mpc_solver/include/mpc_solver/) and [src](./catkin_ws/src/mpc/mpc_solver/src) directories and the file *cmake_globalvars.cmake* in the [src](./catkin_ws/src/mpc/mpc_solver/src) directory to their respective directories in the Docker container on the onboard computer. You can do so by dragging and dropping the files in VS Code. Then, in the *pmpc/smpc/tmpc_FORCESNLPsolver* directory, remove the directory `lib` containing the solver compatible with the CPU architecture of the GCS and rename `lib_target` to `lib`, which contains the solver compatible with the CPU architecture of the onboard computer. Repeat this step for all the solvers you want to run on the onboard computer.
 
 7. Start the tmuxinator project in the Docker container on the onboard computer and build the required packages in the catkin workspace:
-```
+```bash
 shmpc
 catkin build mpc_hovergames vicon_bridge
 ```
@@ -118,27 +118,27 @@ Exciting! Ready to run the lab experiments?
     5. If people are at danger, or in any other dangerous case, kill the motors.
 
 4. In the container on the onboard computer, go to the second terminal window (`roscore`) using shift+arrow-right and press arrow-up and enter to run:
-    ```
+    ```bash
     roscore
     ```
 
 5. Go to the third terminal window (`run`). See step 1 in the [run instructions](./sim.md#run) in [sim.md](./sim.md) for more information. In this case, run the following command in the top-left pane:
-    ```
+    ```bash
     run_px4_2_base_lab
     ```
 
 6. In the container on the GCS, go to the second terminal window (`run`) and run the following command in the top-left pane:
-    ```
+    ```bash
     run_gcs_2
     ```
     This will start the GUI applications used to run the simulations and lab experiments. Check if RViZ visualizes the map, the quadrotor pose, and the obstacles correctly.
 
 7. If everything is visualized correctly, start the algorithm code in the container on the onboard computer. In the third terminal window (`run`), run the following commands in the bottom-left pane:
-    ```
+    ```bash
     run_px4_2_0_lab
     ```
     and in the bottom-right pane:
-    ```
+    ```bash
     run_px4_2_1_lab
     ```
 
