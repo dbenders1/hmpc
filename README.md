@@ -1,25 +1,27 @@
 # hmpc
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
-[![Static Badge](https://img.shields.io/badge/DOI-10.48550%2FarXiv.2406.11506-blue)](https://arxiv.org/abs/2406.11506)
+[![Static Badge](https://img.shields.io/badge/DOI-10.1109%2FTRO.2025.3567529-blue)](https://doi.org/10.1109/TRO.2025.3567529)
 
 
 
 ## T-RO paper
-A reference implementation of the embedded MPC framework used in our T-RO paper [Embedded Hierarchical MPC for Autonomous Navigation](https://doi.org/10.1109/TRO.2025.3567529).\
+The reference implementation of the embedded MPC framework used in our T-RO paper [Embedded Hierarchical MPC for Autonomous Navigation](https://doi.org/10.1109/TRO.2025.3567529).\
 Paper on IEEE Xplore: https://doi.org/10.1109/TRO.2025.3567529. \
 Paper on arXiv: https://arxiv.org/abs/2406.11506. \
 Video: https://youtu.be/0RnrKk6830I. \
 Website: https://autonomousrobots.nl/paper_websites/hmpc.
 
 ```bibtex
-@article{benders2024embedded,
-    title   = {Embedded Hierarchical MPC for Autonomous Navigation},
-    author  = {Benders, Dennis and K{\"o}hler, Johannes and Niesten, Thijs and Babu{\v{s}}ka, Robert and Alonso-Mora, Javier and Ferranti, Laura},
-    journal = {IEEE Transactions on Robotics},
-    note    = {Early access},
-    year    = {2025},
-    doi     = {10.1109/TRO.2025.3567529}
+@ARTICLE{benders2025embedded,
+  author={Benders, Dennis and K{\"o}hler, Johannes and Niesten, Thijs and Babu{\v{s}}ka, Robert and Alonso-Mora, Javier and Ferranti, Laura},
+  journal={IEEE Transactions on Robotics}, 
+  title={Embedded Hierarchical MPC for Autonomous Navigation}, 
+  year={2025},
+  volume={41},
+  number={},
+  pages={3556-3574},
+  doi={10.1109/TRO.2025.3567529}
 }
 ```
 
